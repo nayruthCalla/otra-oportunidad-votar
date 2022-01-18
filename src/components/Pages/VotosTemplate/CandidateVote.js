@@ -30,13 +30,15 @@ const Figure = styled.figure`
   align-items: center;
   background: #e2e2e2;
   border-radius: 50%;
-  width: 40%;
+  width: 61px;
+  height: 61px;
 `
 const Image = styled.img`
   border-radius: 50%;
   object-fit: cover;
   object-position: center center;
-  width: 100%;
+  width: 61px;
+  height: 61px;
 `
 const Name = styled.p`
   font-family: Saira Condensed;

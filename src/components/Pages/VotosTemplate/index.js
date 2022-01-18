@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ButtonOptions from './ButtonOptions'
 import Candidatevote from './CandidateVote'
-import pesron1 from '../../../assets/item1.png'
+// import pesron1 from '../../../assets/item1.png'
+import { useStateCart } from '../../../context/dataContext'
 
 const Container = styled.div`
   display: flex;
@@ -16,22 +18,58 @@ const Container = styled.div`
   gap: 2rem;
   margin-top: 53px;
 `
-const data = {
-  option: 'Opción 1',
-  photo: pesron1,
-  name: 'keiko fujimori',
-}
+// const data = {
+//   option: 'Opción 1',
+//   photo: pesron1,
+//   name: 'keiko fujimori',
+// }
 
 const Votos = () => {
+  const { data, totalVotes } = useStateCart()
+  const [view, setView] = useState('todos')
+  const [onlyCandidate, setOnlyCandidate] = useState({})
+  const [showVotes, setShowVotes] = useState(false)
+
+  useEffect(() => {
+    if (view !== 'todos') {
+      const person = data.find((e) => e.option === view)
+      setOnlyCandidate(person)
+    }
+  }, [view])
+
+  const convertToPorcn = (num) => {
+    if (num === 0) {
+      return 0
+    }
+    const porc = (num / totalVotes) * 100
+    return `${Math.round(porc)}%`
+  }
+
   return (
     <Container>
-      <ButtonOptions />
-      <Candidatevote
-        votos="200"
-        option={data.option}
-        name={data.name}
-        photo={data.photo}
-      />
+      <ButtonOptions optionView={setView} showVotes={setShowVotes} />
+      {view === 'todos' ? (
+        data.map(({ votos, option, name, photo }, index) => (
+          <Candidatevote
+            key={index}
+            votos={showVotes ? convertToPorcn(votos) : votos}
+            option={option}
+            name={name}
+            photo={photo}
+          />
+        ))
+      ) : (
+        <Candidatevote
+          votos={
+            showVotes
+              ? convertToPorcn(onlyCandidate.votos)
+              : onlyCandidate.votos
+          }
+          option={onlyCandidate.option}
+          name={onlyCandidate.name}
+          photo={onlyCandidate.photo}
+        />
+      )}
     </Container>
   )
 }

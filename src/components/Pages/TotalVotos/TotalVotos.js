@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import CardList from '../CardTemplate'
 import VotosTemplate from '../VotosTemplate'
+import { useStateCart } from '../../../context/dataContext'
 
 const Container = styled.div`
   justify-content: center;
@@ -33,12 +35,21 @@ const ConText = styled.div`
 `
 
 const TotalVotos = () => {
+  const { data, totalVotes, setTotalVotes } = useStateCart()
+
+  let votos = 0
+  useEffect(() => {
+    data.forEach((e) => {
+      votos += e.votos
+      setTotalVotes(votos)
+    })
+  }, [data])
   return (
     <Container>
       <CardList />
       <ConText>
         <P>Total de votos:</P>
-        <H2>1480</H2>
+        <H2>{totalVotes}</H2>
       </ConText>
       <VotosTemplate />
     </Container>

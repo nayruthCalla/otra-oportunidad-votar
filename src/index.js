@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./css/index.css";
-import App from "./components/App";
+import ReactDOM from 'react-dom'
+import './css/index.css'
+import App from './components/App'
+import { CartProvider } from './context/dataContext'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <CartProvider>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+  </CartProvider>,
+  document.getElementById('root')
+)

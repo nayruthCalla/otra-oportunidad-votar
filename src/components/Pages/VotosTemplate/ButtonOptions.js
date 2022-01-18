@@ -24,6 +24,9 @@ const Button = styled.button`
   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
+  &:hover {
+    background: #bf5656;
+  }
 `
 const Select = styled.select`
   background: #da7878;
@@ -31,28 +34,48 @@ const Select = styled.select`
   border: none;
   padding: 1rem;
   color: #ffffff;
+  font-size: 18px;
+  &:hover {
+    background: #bf5656;
+  }
 `
 const Option = styled.option`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 23px;
+  font-size: 17px;
   line-height: 27px;
   color: #ffffff;
+  border: none;
 `
 
-const ButtonOptions = () => {
+const ButtonOptions = ({ optionView, showVotes }) => {
+  const handleChange = (e) => {
+    optionView(e.target.value)
+  }
+  const handleClickPorct = () => {
+    showVotes(true)
+  }
+  const handleClickInt = () => {
+    showVotes(false)
+  }
   return (
     <Conatiner>
       <P>Ver por:</P>
-      <Button type="button">Porcentaje%</Button>
-      <Button type="button">Total</Button>
-      <Select>
-        <Option>Todos</Option>
-        <Option>Option1</Option>
-        <Option>Option2</Option>
-        <Option>Option3</Option>
+      <Select name="select" onChange={handleChange}>
+        <Option value="todos" defaultValue>
+          Todos
+        </Option>
+        <Option value="Opción 1">Opción 1</Option>
+        <Option value="Opción 2">Opción 2</Option>
+        <Option value="Opción 3">Opción 3</Option>
       </Select>
+      <Button type="button" onClick={handleClickPorct}>
+        Porcentaje
+      </Button>
+      <Button type="button" onClick={handleClickInt}>
+        Normal
+      </Button>
     </Conatiner>
   )
 }

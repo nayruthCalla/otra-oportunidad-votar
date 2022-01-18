@@ -1,6 +1,9 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
 import styled from 'styled-components'
 import CardBody from './CardBody'
 import DividingLine from '../../Layouts/LineStyle/DividingLine'
+import { useStateCart } from '../../../context/dataContext'
 
 const Conatiner = styled.div`
   background: #ffffff;
@@ -25,14 +28,33 @@ const Button = styled.button`
   border: none;
   padding: 1rem 2rem;
   margin: 2rem;
+  &:hover {
+    background: #77547cbf;
+  }
 `
 
 const CardTemplate = ({ option, name, photo }) => {
+  const { data, setData } = useStateCart()
+
+  const handleClick = () => {
+    const selectedPerson = data.find((item) => item.option === option)
+    if (selectedPerson) {
+      const newArr = data.map((i) => {
+        if (i.option === option) {
+          i.votos++
+        }
+        return i
+      })
+      setData([...newArr])
+    }
+  }
   return (
     <Conatiner>
       <CardBody option={option} name={name} photo={photo} />
       <DividingLine />
-      <Button type="button">Votar</Button>
+      <Button type="button" onClick={handleClick}>
+        Votar
+      </Button>
     </Conatiner>
   )
 }
