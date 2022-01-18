@@ -7,6 +7,7 @@ import { useStateCart } from '../../../context/dataContext'
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   background: #ffffff;
   border: 1px solid #d5c2c2;
@@ -17,6 +18,9 @@ const Container = styled.div`
   padding: 2rem 2rem 3.3rem 2rem;
   gap: 2rem;
   margin-top: 53px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `
 // const data = {
 //   option: 'Opción 1',

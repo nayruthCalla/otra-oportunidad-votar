@@ -13,6 +13,7 @@ const Container = styled.div`
   width: 100%;
   gap: 2rem;
   margin-top: 50px;
+  justify-content: center;
 `
 
 const dataPerson = [
