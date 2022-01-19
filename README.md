@@ -2,7 +2,7 @@
 ### ❤️ Revisa la [DEMO](https://vota-ya.netlify.app/) 👀 ❤️
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ffe24ffa-9edd-45ad-a392-fc6538568a06/deploy-status)](https://app.netlify.com/sites/vota-ya/deploys)
 
-* Este proyecto fue un reto por parte de Make It Real.
+* Este proyecto fue un reto por parte de Make It Real, para la implementación de conceptos de Context en React.
 * Diseño de alta fidelidad:
 
 ![image](https://user-images.githubusercontent.com/47750079/150034512-8e88b53a-4cd5-41b5-805c-585e8439ebaf.png)
